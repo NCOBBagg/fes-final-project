@@ -6,26 +6,26 @@ function Nav() {
   return (
     <>
         <section id="nav">
-        <div class="nav__container">
-          <div class="nav__row">
-            <div class="nav">
-              <div class="nav__bar">
+        <div className="nav__container">
+          <div className="nav__row">
+            <div className="nav">
+              <div className="nav__bar">
                 <figure>
                   <img
-                    class="nav__figure"
+                    className="nav__figure"
                     src={AdobeStock_550760946}
                     alt=""
                   />
                 </figure>
-                <ul class="nav__lists">
-                  <h3 class="nav__list">
+                <ul className="nav__lists">
+                  <h3 className="nav__list">
                     <Link to="/"
-                      class="nav__list"
+                      className="nav__list"
                     >
                       Home
                     </Link>
                   </h3>
-                  <button class="nav__list--btn">Log In</button>
+                  <button className="nav__list--btn">Log In</button>
                 </ul>
               </div>
             </div>
