@@ -13,7 +13,7 @@ function Home() {
   const navigate = useNavigate()
 
   function onSearch() {
-    console.log("search term", searchItem);
+    // console.log("search term", searchItem);
     setTimeout(() => {
       fetchMovies(searchItem);
       navigate(`/movies/${searchItem}`)
@@ -26,7 +26,7 @@ function Home() {
   }
 
   useEffect(() => {
-    fetchMovies();
+    fetchMovies("");
   }, []);
 
   return (
@@ -51,7 +51,7 @@ function Home() {
                   setSearchItem(event.target.value);
                 }}
               />
-              <button onClick={() => onSearch()} className="input__btn">
+              <button onClick={() => onSearch(movies)} className="input__btn">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
             </div>
