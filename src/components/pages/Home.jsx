@@ -3,14 +3,21 @@ import Nav from "../ui/Nav";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
 
 function Home() {
   const [searchItem, setSearchItem] = useState("");
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate()
 
   function onSearch() {
+    console.log("search term", searchItem);
+    setTimeout(() => {
+      fetchMovies(searchItem);
+      navigate(`/movies/${searchItem}`)
+    })
     fetchMovies(searchItem);
   }
   async function fetchMovies(title) {
