@@ -7,13 +7,19 @@ const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
-  const params = useParams()
-  const title = params.id
-  
+  const params = useParams();
+  const title = params.id;
+  const [loading, setLoading] = useState(true);
+
+  function onSearch() {
+    
+  }
+
 
   async function fetchMovies(title) {
     const { data } = await axios.get(`${API_URL}&s=${title}`);
     setMovies(data.Search);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -21,29 +27,31 @@ function Movies() {
   }, [title]);
   return (
     <>
-    <Nav />
+      <Nav />
       <div className="movie__row">
         <div className="movie__wrapper">
-          {movies.map((movie) => (
-            ? new Array(8).fill(0).map((_, index) => {
-              <div className="movie">
-                <div className="movie__img--skeleton">
-
+          {loading
+            ? new Array(8).fill(0).map((_, index) => (
+                <div className="movie" key={index}>
+                  <div className="movie__img--skeleton">
+                    <div className="movie__title--skeleton">
+                      <div className="movie__year--skeleton"></div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            })
-            <div className="movie">
-              <div className="movie__img" key={movie.id}>
-                <img src={`${movie.Poster}`} alt="poster" />
-                <div className="movies__content">
-                  <h1>{movie.Title}</h1>
-                  <h1>{movie.Year}</h1>
-                  <p onClick={`${movie.imdbID}`}>SEE MORE</p>
+              ))
+            : movies.map((movie) => (
+                <div className="movie" key={movie.id}>
+                  <div className="movie__img">
+                    <img src={`${movie.Poster}`} alt="poster" />
+                    <div className="movie__content">
+                      <h1>{movie.Title}</h1>
+                      <h1>{movie.Year}</h1>
+                      <p onClick={() => onSearch()}>SEE MORE</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-          
+              ))}
         </div>
       </div>
     </>

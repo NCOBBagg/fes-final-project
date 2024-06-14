@@ -203,6 +203,29 @@ MOVIE BOX STYLING
   transition: all 300ms ease;
 }
 
+.movie__img--skeleton {
+  width: 100%;
+  max-width: 250px;
+  height: 320px;
+  background-color: rgb(204, 204, 204);
+  margin-bottom: 8px;
+}
+
+.skeleton {
+  background-color: rgb(227, 227, 227) !important;
+  margin-bottom: 8px;
+}
+
+.movie__title--skeleton {
+  height: 21px;
+  width: 100%;
+}
+
+.movie__year--skeleton {
+  height: 21px;
+  width: 100%;
+}
+
 
 img {
   display: block;
