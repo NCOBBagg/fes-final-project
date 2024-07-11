@@ -1,30 +1,34 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Nav from "../ui/Nav";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
   const params = useParams();
-  const title = params.id;
+  const imdbID = params.id;
   const [loading, setLoading] = useState(true);
 
   function onSearch() {
-    
+    setTimeout(() => {
+      fetchMovies(movies);
+      Navigate(`/moviecard/${movies}`)
+    })
+    fetchMovies(movies)
   }
 
 
-  async function fetchMovies(title) {
-    const { data } = await axios.get(`${API_URL}&s=${title}`);
+  async function fetchMovies(imdbID) {
+    const { data } = await axios.get(`${API_URL}&i=${imdbID}`);
     setMovies(data.Search);
     setLoading(false);
   }
 
   useEffect(() => {
-    fetchMovies(title);
-  }, [title]);
+    fetchMovies("Batman");
+  }, []);
   return (
     <>
       <Nav />
