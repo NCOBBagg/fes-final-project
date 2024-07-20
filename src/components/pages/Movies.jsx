@@ -8,7 +8,7 @@ const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
 function Movies() {
   const [movies, setMovies] = useState([]);
   const params = useParams();
-  const imdbID = params.id;
+  const title = params.id;
   const [loading, setLoading] = useState(true);
 
   function onSearch() {
@@ -20,15 +20,15 @@ function Movies() {
   }
 
 
-  async function fetchMovies(imdbID) {
-    const { data } = await axios.get(`${API_URL}&i=${imdbID}`);
+  async function fetchMovies(title) {
+    const { data } = await axios.get(`${API_URL}&s=${title}`);
     setMovies(data.Search);
     setLoading(false);
   }
 
   useEffect(() => {
-    fetchMovies("Batman");
-  }, []);
+    fetchMovies(title);
+  }, [title]);
   return (
     <>
       <Nav />
