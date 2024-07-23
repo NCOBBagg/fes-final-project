@@ -13,7 +13,7 @@ function Movies() {
 
   async function onSearch() {
     await fetchMovies();
-    
+
     Navigate(`/moviecard/${movies}`);
 
     // fetchMovies(movies)
