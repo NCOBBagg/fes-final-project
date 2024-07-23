@@ -1,16 +1,24 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 import Nav from "../ui/Nav";
+import { useEffect, useState } from "react";
 import axios from "axios";
-
-const MovieCard = ({ movie: {Released, Actors, Genre, Director, Writer, Language, Plot } })
 
 const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
 
-async function moveDesc(imdbID) {
-    const { movie } = await axios.get(`${API_URL}&i=${imdbID}`);
-}
-
 function Moviecard() {
+  const params = useParams();
+  const imdbID = params.id;
+  const [desc, setDesc] = useState([]);
+
+  async function fecthDesc() {
+    const { data:movie } = await axios.get(`${API_URL}&s=${imdbID}`);
+    setDesc(data.Search)
+  }
+
+  useEffect(() => {
+    fecthDesc();
+  }, (""));
+
   return (
     <>
       <Nav />

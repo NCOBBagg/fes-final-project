@@ -11,14 +11,13 @@ function Movies() {
   const title = params.id;
   const [loading, setLoading] = useState(true);
 
-  function onSearch() {
-    setTimeout(() => {
-      fetchMovies(movies);
-      Navigate(`/moviecard/${movies}`)
-    })
-    fetchMovies(movies)
-  }
+  async function onSearch() {
+    await fetchMovies();
+    
+    Navigate(`/moviecard/${movies}`);
 
+    // fetchMovies(movies)
+  }
 
   async function fetchMovies(title) {
     const { data } = await axios.get(`${API_URL}&s=${title}`);
