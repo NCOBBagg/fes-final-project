@@ -11,7 +11,7 @@ function Moviecard() {
   const [desc, setDesc] = useState([]);
 
   async function fecthDesc() {
-    const { data:movie } = await axios.get(`${API_URL}&i=${imdbID}`);
+    const { data } = await axios.get(`${API_URL}&i=${imdbID}`);
     setDesc(data.Search)
   }
 
