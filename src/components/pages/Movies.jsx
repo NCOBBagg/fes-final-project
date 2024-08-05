@@ -16,7 +16,7 @@ function Movies() {
 
     Navigate(`/moviecard/${movies}`);
 
-    // fetchMovies(movies)
+    fetchMovies(movies)
   }
 
   async function fetchMovies(title) {
