@@ -1,32 +1,44 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Nav from "../ui/Nav";
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
-  const params = useParams();
-  const title = params.id;
+  const navigate = useNavigate()  
+  const { id : title } = useParams();
+  // const title = params.id;
   const [loading, setLoading] = useState(true);
 
-  async function onSearch() {
-    await fetchMovies();
+  async function onSearch(movieId) {
+    // await fetchMovies();
+    navigate(`/moviecard/${movieId}`);
 
-    Navigate(`/moviecard/${movies}`);
-
-    fetchMovies(movies)
+    // fetchMovies(movies)
   }
 
-  async function fetchMovies(title) {
-    const { data } = await axios.get(`${API_URL}&s=${title}`);
-    setMovies(data.Search);
-    setLoading(false);
-  }
+  // async function fetchMovies(title) {
+  //   const { data } = await axios.get(`${API_URL}&s=${title}`);
+  //   setMovies(data.Search);
+  //   setLoading(false);
+  // }
 
   useEffect(() => {
+    async function fetchMovies(title) {
+      try {
+        const { data } = await axios.get(`${API_URL}&s=${title}`);
+        setMovies(data.Search);
+      } catch(error) {
+        // catch and handle/ignore
+      } finally {
+        setLoading(false);
+      }
+    }
+
     fetchMovies(title);
+    
   }, [title]);
   return (
     <>
@@ -50,7 +62,7 @@ function Movies() {
                     <div className="movie__content">
                       <h1>{movie.Title}</h1>
                       <h1>{movie.Year}</h1>
-                      <p onClick={() => onSearch()}>SEE MORE</p>
+                      <p onClick={() => onSearch(movie.id)}>SEE MORE</p>
                     </div>
                   </div>
                 </div>

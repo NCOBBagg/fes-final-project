@@ -33,7 +33,7 @@ function Moviecard() {
             </div>
           ))
         : desc.map((movie) => (
-            <div className="movie__info--wrapper" key={imdbID}>
+            <div className="movie__info--wrapper" key={movie.id}>
               <h3>
                 <span className="red">Released: </span>${movie.Released}
               </h3>
