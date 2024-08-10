@@ -6,55 +6,57 @@ import axios from "axios";
 const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
 
 function Moviecard() {
-  const params = useParams();
-  const imdbID = params.id;
+  const { id } = useParams();
   const [desc, setDesc] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function fecthDesc() {
-    const { data } = await axios.get(`${API_URL}&i=${imdbID}`);
-    setDesc(data.Search);
-    setLoading(false);
+    try {
+      const { data } = await axios.get(`${API_URL}&i=${id}`);
+      setDesc(data);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     fecthDesc();
-  }, []);
+  }, [id]);
 
   return (
     <>
       <Nav />
-      {desc.map((movie) => (
-        <>
-          <div className="movie__img--wrapper">
-            <h1>${movie.Title}</h1>
-            <img src={`${movie.Poster}`} alt="" />
-          </div>
-          <div className="movie__info--wrapper" key={movie.id}>
-            <h3>
-              <span className="red">Released: </span>${movie.Released}
-            </h3>
-            <h3>
-              <span className="red">Actors: </span>${movie.Actors}
-            </h3>
-            <h3>
-              <span className="red">Genre: </span>${movie.Genre}
-            </h3>
-            <h3>
-              <span className="red">Director: </span>${movie.Director}
-            </h3>
-            <h3>
-              <span className="red">Writer: </span>${movie.Writer}
-            </h3>
-            <h3>
-              <span className="red">Language: </span>${movie.Language}
-            </h3>
-            <h3>
-              <span className="red">Plot: </span>${movie.Plot}
-            </h3>
-          </div>
-        </>
-      ))}
+      <>
+        <div className="movie__img--wrapper">
+          <h1>{desc.Title}</h1>
+          <img src={`${desc.Poster}`} alt="" />
+        </div>
+        <div className="movie__info--wrapper" key={desc.id}>
+          <h3>
+            <span className="red">Released: </span>{desc.Released}
+          </h3>
+          <h3>
+            <span className="red">Actors: </span>{desc.Actors}
+          </h3>
+          <h3>
+            <span className="red">Genre: </span>{desc.Genre}
+          </h3>
+          <h3>
+            <span className="red">Director: </span>{desc.Director}
+          </h3>
+          <h3>
+            <span className="red">Writer: </span>{desc.Writer}
+          </h3>
+          <h3>
+            <span className="red">Language: </span>{desc.Language}
+          </h3>
+          <h3>
+            <span className="red">Plot: </span>{desc.Plot}
+          </h3>
+        </div>
+      </>
     </>
   );
 }

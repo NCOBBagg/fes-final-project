@@ -12,9 +12,9 @@ function Movies() {
   // const title = params.id;
   const [loading, setLoading] = useState(true);
 
-  async function onSearch(movieId) {
+  async function onSearch(movieID) {
     // await fetchMovies();
-    navigate(`/moviecard/${movieId}`);
+    navigate(`/moviecard/${movieID}`);
 
     // fetchMovies(movies)
   }
@@ -56,13 +56,13 @@ function Movies() {
                 </div>
               ))
             : movies.map((movie) => (
-                <div className="movie" key={movie.id}>
+                <div className="movie" key={movie.imdbID}>
                   <div className="movie__img">
                     <img src={`${movie.Poster}`} alt="poster" />
                     <div className="movie__content">
                       <h1>{movie.Title}</h1>
                       <h1>{movie.Year}</h1>
-                      <p onClick={() => onSearch(movie.id)}>SEE MORE</p>
+                      <p onClick={() => onSearch(movie.imdbID)}>SEE MORE</p>
                     </div>
                   </div>
                 </div>
