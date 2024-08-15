@@ -3,7 +3,7 @@ import Nav from "../ui/Nav";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
+const API_URL = "https://www.omdbapi.com/?apikey=cca6a59";
 
 function Moviecard() {
   const { id } = useParams();

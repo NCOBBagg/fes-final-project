@@ -3,34 +3,24 @@ import React, { useEffect, useState } from "react";
 import Nav from "../ui/Nav";
 import { useNavigate, useParams } from "react-router-dom";
 
-const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
+const API_URL = "https://www.omdbapi.com/?apikey=cca6a59";
 
 function Movies() {
   const [movies, setMovies] = useState([]);
-  const navigate = useNavigate()  
-  const { id : title } = useParams();
-  // const title = params.id;
+  const navigate = useNavigate();
+  const { id: title } = useParams();
   const [loading, setLoading] = useState(true);
 
   async function onSearch(movieID) {
-    // await fetchMovies();
     navigate(`/moviecard/${movieID}`);
-
-    // fetchMovies(movies)
   }
-
-  // async function fetchMovies(title) {
-  //   const { data } = await axios.get(`${API_URL}&s=${title}`);
-  //   setMovies(data.Search);
-  //   setLoading(false);
-  // }
 
   useEffect(() => {
     async function fetchMovies(title) {
       try {
         const { data } = await axios.get(`${API_URL}&s=${title}`);
         setMovies(data.Search);
-      } catch(error) {
+      } catch (error) {
         // catch and handle/ignore
       } finally {
         setLoading(false);
@@ -38,7 +28,6 @@ function Movies() {
     }
 
     fetchMovies(title);
-    
   }, [title]);
   return (
     <>

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://www.omdbapi.com/?apikey=cca6a59";
+const API_URL = "https://www.omdbapi.com/?apikey=cca6a59";
 
 function Home() {
   const [searchItem, setSearchItem] = useState("");
