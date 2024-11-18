@@ -12,6 +12,13 @@ function Home() {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate()
 
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      fetchMovies(title)
+    }
+  }
+
   function onSearch() {
     // console.log("search term", searchItem);
     setTimeout(() => {
@@ -47,6 +54,7 @@ function Home() {
                 value={searchItem}
                 className="search__bar"
                 placeholder="Search Movie Title"
+                onKeyDown={handleKeyDown}
                 onChange={(event) => {
                   setSearchItem(event.target.value);
                 }}
