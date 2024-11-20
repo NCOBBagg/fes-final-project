@@ -62,4 +62,4 @@ function Movies() {
   );
 }
 
-export defau
+export default Movies;

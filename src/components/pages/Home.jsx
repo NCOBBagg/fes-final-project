@@ -60,4 +60,14 @@ function Home() {
                 }}
               />
               <button onClick={() => onSearch(movies)} className="input__btn">
-                <FontAwesomeIcon icon={faMagn
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default Home;
