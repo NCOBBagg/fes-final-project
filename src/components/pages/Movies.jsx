@@ -44,7 +44,7 @@ function Movies() {
                   </div>
                 </div>
               ))
-            : movies.map((movie) => (
+            : movies.slice(0,8).map((movie) => (
                 <div className="movie" key={movie.imdbID}>
                   <div className="movie__img">
                     <img src={`${movie.Poster}`} alt="poster" />
@@ -62,4 +62,4 @@ function Movies() {
   );
 }
 
-export default Movies;
+export defau

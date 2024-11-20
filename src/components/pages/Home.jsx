@@ -12,12 +12,12 @@ function Home() {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate()
 
-
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      fetchMovies(title)
+      onSearch(movies)
     }
   }
+
 
   function onSearch() {
     // console.log("search term", searchItem);
@@ -60,14 +60,4 @@ function Home() {
                 }}
               />
               <button onClick={() => onSearch(movies)} className="input__btn">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-export default Home;
+                <FontAwesomeIcon icon={faMagn
